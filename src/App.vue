@@ -9,6 +9,7 @@
 
 <script>
 import NavBar from './NavBar.vue';
+import '@/styles/overrides.sass'
 
 export default {
   name: 'App',
