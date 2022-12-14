@@ -17,7 +17,7 @@ import CardDesign from './CardDesign.vue'
 
 export default {
   name: 'StatsCard',
-  props: { value: { type: Number, default: 0 } },
+  props: { value: { type: Number } },
   components: { CardDesign },
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <v-card v-bind="$attrs" class="v-card--material mt-4">
+  <v-card v-bind="$attrs" class="v-card--material mt-4 fill-height" :color="cardColor">
     <v-card-title class="align-start">
       <v-sheet :color="color" :width="fullHeader ? '100%' : undefined"
         class="overflow-hidden mt-n9 transition-swing v-card--material__sheet" elevation="6" max-width="100%" rounded>
@@ -57,6 +57,7 @@ export default {
     iconSmall: Boolean,
     subtitle: String,
     title: String,
+    cardColor: String,
   },
 
   computed: {

@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Dashboard from '../views/Dashboard.vue'
 
 Vue.use(VueRouter)
 
@@ -8,7 +7,12 @@ const routes = [
   {
     path: '/',
     name: 'dashboard',
-    component: Dashboard
+    component: () => import('../views/Dashboard.vue')
+  },
+  {
+    path: '/manage-gallery',
+    name: 'ManegeGallery',
+    component: () => import('../views/Gallery.vue')
   },
   // {
   //   path: '/about',

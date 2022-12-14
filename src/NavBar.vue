@@ -42,9 +42,9 @@ export default {
           to: '/',
         },
         {
-          title: 'User Profile',
-          icon: 'mdi-account',
-          to: '/components/profile/',
+          title: 'Manage Gallery',
+          icon: 'mdi-image-multiple',
+          to: '/manage-gallery',
         },
         {
           title: 'Regular Tables',
