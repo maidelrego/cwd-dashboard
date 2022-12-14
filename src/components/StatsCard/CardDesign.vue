@@ -1,5 +1,5 @@
 <template>
-  <v-card v-bind="$attrs" class="v-card--material mt-4 fill-height" :color="cardColor">
+  <v-card v-bind="$attrs" class="v-card--material mt-4" :color="cardColor">
     <v-card-title class="align-start">
       <v-sheet :color="color" :width="fullHeader ? '100%' : undefined"
         class="overflow-hidden mt-n9 transition-swing v-card--material__sheet" elevation="6" max-width="100%" rounded>
@@ -36,11 +36,11 @@
     <slot />
 
     <template v-if="$slots.actions">
-      <v-divider class="mt-2 mx-4" />
+      <v-divider class="" />
 
-      <v-card-actions class="px-4 text-caption grey--text">
+      <div class="mt-2 pb-2 text-caption grey--text text-center">
         <slot name="actions" />
-      </v-card-actions>
+      </div>
     </template>
   </v-card>
 </template>

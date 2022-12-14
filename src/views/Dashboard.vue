@@ -183,14 +183,14 @@ export default {
       },
       {
         actionIcon: 'mdi-alert-circle-outline',
-        actionText: 'You haven\'t seen these yet',
+        actionText: '',
         color: 'error',
         icon: 'mdi-badge-account-alert-outline',
         title: 'Unread Quotes',
       },
       {
         actionIcon: 'mdi-alert-circle-outline',
-        actionText: 'You haven\'t seen these yet',
+        actionText: '',
         color: 'error',
         icon: 'mdi-comment-alert-outline',
         title: 'Unread Messages',
@@ -238,6 +238,11 @@ export default {
         this.quotesList = data
         this.stats.find((item) => item.title === 'Quotes').value = data.length
         this.stats.find((item) => item.title === 'Unread Quotes').value = this.unreadQuotes.length
+        if (this.unreadQuotes.length > 0) {
+          this.stats.find((item) => item.title === 'Unread Quotes').actionText = 'You haven\'t seen these yet'
+        } else {
+          this.stats.find((item) => item.title === 'Unread Quotes').actionText = 'No unread Quotes'
+        }
       })
       await this.$store.dispatch('ContactUs/pullData').then((data) => {
         console.log(data)
@@ -245,6 +250,11 @@ export default {
         this.messageList = data
         this.stats.find((item) => item.title === 'Messages').value = data.length
         this.stats.find((item) => item.title === 'Unread Messages').value = this.unreadMessages.length
+        if (this.unreadMessages.length > 0) {
+          this.stats.find((item) => item.title === 'Unread Messages').actionText = 'You haven\'t seen these yet'
+        } else {
+          this.stats.find((item) => item.title === 'Unread Messages').actionText = 'No unread messages'
+        }
       })
     },
   },

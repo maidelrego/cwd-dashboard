@@ -5,9 +5,14 @@
         <StatsCard :heading="name" color="primary">
           <v-card-text>
             <v-sheet>
-              <img :src="url" width="100%" />
+              <img :src="url" height="400" width="100%" />
             </v-sheet>
           </v-card-text>
+          <template #actions>
+            <v-btn class="text-center" color="error" rounded>
+              Delete
+            </v-btn>
+          </template>
         </StatsCard>
       </v-col>
     </v-row>
