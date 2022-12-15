@@ -1,6 +1,6 @@
 <template>
   <v-container id="doorKits" fluid tag="section">
-    <ManageGallery v-if="doorKitsImages.length" :imagesList="doorKitsImages" folderName="DoorKits" @updateList="updateList" />
+    <ManageGallery :imagesList="doorKitsImages" folderName="DoorKits" @updateList="updateList" />
   </v-container>
 </template>
   
@@ -26,8 +26,7 @@ export default {
       this.getDoorKitsImages();
     },
     async getDoorKitsImages() {
-      await doAPIGet('cloudinary/doorKits').then((res) => {
-        console.log(res.data)
+      await doAPIGet('cloudinary-images/doorKits').then((res) => {
         this.doorKitsImages = res.data
       })
     }

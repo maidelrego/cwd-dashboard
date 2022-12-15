@@ -10,13 +10,10 @@
               <v-toolbar-title class="primary--text" v-if="isMultiselection">{{ multipleSelection.length }}
                 Assets Selected</v-toolbar-title>
               <v-spacer></v-spacer>
-              <v-btn color="primary" class="ma-2 white--text" small fab>
-                <v-icon dark>mdi-cloud-upload</v-icon>
-              </v-btn>
-              <v-btn icon large v-if="isMultiselection">
-                <v-btn color="primary" class="ma-2 white--text" small fab>
-                <v-icon size="23" dark>mdi-trash-can-outline</v-icon>
-              </v-btn>
+              <Uploads :folderName="folderName" icon @uploaded="refreshList" />
+              <v-btn v-if="isMultiselection" small fab color="primary" class="white--text mr-5 ml-5" @click="handleBulkDelete()">
+                <v-progress-circular v-if="uploading" indeterminate size="20" color="white"></v-progress-circular>
+                <v-icon v-else>mdi-trash-can-outline</v-icon>
               </v-btn>
             </v-toolbar>
           </v-card-title>
@@ -24,15 +21,15 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col class="mb-5" v-for="({ url, name, id }) in imagesList" :key="name" cols="12" md="3" lg="3">
-        <StatsCard @checkboxEvent="checkboxEvent" :heading="name" color="primary" :eventId="id">
+      <v-col class="mb-5" v-for="({ url, name, assetId }) in imagesList" :key="name" cols="12" md="3" lg="3">
+        <StatsCard @checkboxEvent="checkboxEvent" :heading="name" color="primary" :eventId="assetId">
           <v-card-text>
             <v-sheet>
               <img :src="url" :height="imagesRezise" width="100%" />
             </v-sheet>
           </v-card-text>
-          <template #actions>
-            <v-btn @click="handleSingleDelete(id)" class="text-center" color="error" rounded>
+          <template v-if="multipleSelection.length === 0" #actions>
+            <v-btn @click="handleSingleDelete(assetId)" class="text-center" color="error" rounded>
               Delete
             </v-btn>
           </template>
@@ -44,6 +41,7 @@
 
 <script>
 import StatsCard from '@/components/StatsCard/StatsCard.vue'
+import Uploads from '@/components/UploadImages/Uploads.vue'
 import { doAPIDelete } from '@/services/api'
 
 export default {
@@ -60,11 +58,13 @@ export default {
   },
   components: {
     StatsCard,
+    Uploads
   },
   data() {
     return {
       expand: false,
       multipleSelection: [],
+      uploading: false
     }
   },
   computed: {
@@ -89,8 +89,10 @@ export default {
     },
   },
   methods: {
+    refreshList() {
+      this.$emit('updateList')
+    },
     async handleSingleDelete(asset_id) {
-      console.log('delete', asset_id)
       await doAPIDelete('cloudinary/' + asset_id).then((res) => {
         if (res.status === 200) {
           this.$emit('updateList')
@@ -100,13 +102,20 @@ export default {
       })
 
     },
-    checkboxEvent(checkboxValue, id) {
-      if (checkboxValue) {
-        this.multipleSelection.push(id)
-      } else {
-        this.multipleSelection = this.multipleSelection.filter((item) => item !== id)
+    async handleBulkDelete() {
+      this.uploading = true
+      for (const selection of this.multipleSelection) {
+        await this.handleSingleDelete(selection)
       }
-      console.log(this.multipleSelection)
+      this.multipleSelection = []
+      this.uploading = false
+    },
+    checkboxEvent(checkboxValue, assetId) {
+      if (checkboxValue) {
+        this.multipleSelection.push(assetId)
+      } else {
+        this.multipleSelection = this.multipleSelection.filter((item) => item !== assetId)
+      }
     },
   }
 }

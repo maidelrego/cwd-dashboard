@@ -1,6 +1,6 @@
 <template>
     <v-container id="finishPaints" fluid tag="section">
-      <ManageGallery v-if="finishPaintsImages.length" :imagesList="finishPaintsImages" folderName="Finish" @updateList="updateList" />
+      <ManageGallery :imagesList="finishPaintsImages" folderName="Finish" @updateList="updateList" />
     </v-container>
   </template>
     
@@ -26,8 +26,7 @@
         this.getFinishPaintsImages();
       },
       async getFinishPaintsImages() {
-        await doAPIGet('cloudinary/finishColors').then((res) => {
-          console.log(res.data)
+        await doAPIGet('cloudinary-images/finishColors').then((res) => {
           this.finishPaintsImages = res.data
         })
       }

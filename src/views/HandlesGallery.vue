@@ -1,6 +1,6 @@
 <template>
   <v-container id="handles" fluid tag="section">
-    <ManageGallery v-if="handlesImages.length" :imagesList="handlesImages" folderName="Handles" />
+    <ManageGallery :imagesList="handlesImages" folderName="Handles" @updateList="updateList" />
   </v-container>
 </template>
   
@@ -22,9 +22,11 @@ export default {
     this.getHandlesImages();
   },
   methods: {
+    updateList() {
+      this.getHandlesImages();
+    },
     async getHandlesImages() {
-      await doAPIGet('cloudinary/handles').then((res) => {
-        console.log(res.data)
+      await doAPIGet('cloudinary-images/handles').then((res) => {
         this.handlesImages = res.data
       })
     }

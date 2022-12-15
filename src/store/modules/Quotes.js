@@ -34,11 +34,9 @@ function getMeta () {
 const Quotes = moduleFactory(getMeta)
 
 Quotes.actions.updateData = async function ({ commit, dispatch, state }, id) {
-  console.log('updateData', state.obj)
   commit('CLEAR_ERROR')
   await doAPIPut('quotes/' + id, { isRead: state.obj.isRead }).then((res) => {
     if (res.status !== 200) {
-      console.log(res.response.data)
       commit('SET_ERROR', res.response.data.message)
       throw new Error('There was an error during the API Post operation')
     } else {

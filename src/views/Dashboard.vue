@@ -231,9 +231,7 @@ export default {
       return `${data.firstName} ${data.lastName}`;
     },
     async populateTable() {
-      console.log('populateTable EXECUTEDD')
       await this.$store.dispatch('Quotes/pullData').then((data) => {
-        console.log(data)
         this.unreadQuotes = data.filter((item) => item.isRead === false)
         this.quotesList = data
         this.stats.find((item) => item.title === 'Quotes').value = data.length
@@ -245,7 +243,6 @@ export default {
         }
       })
       await this.$store.dispatch('ContactUs/pullData').then((data) => {
-        console.log(data)
         this.unreadMessages = data.filter((item) => item.isRead === false)
         this.messageList = data
         this.stats.find((item) => item.title === 'Messages').value = data.length
