@@ -1,14 +1,13 @@
 <template>
   <v-container>
-    <v-app-bar app absolute class="v-bar--underline" color="transparent" :clipped-left="$vuetify.rtl"
-      :clipped-right="!$vuetify.rtl" height="70" flat>
+    <v-app-bar app absolute class="v-bar--underline" dense color="transparent" :clipped-left="$vuetify.rtl"
+      :clipped-right="!$vuetify.rtl" flat>
       <v-app-bar-nav-icon class="hidden-md-and-up" @click="drawer = !drawer" />
-      <v-btn class="ml-3 mr-4 hidden-sm-and-down" elevation="1" fab small @click="mini = !mini">
+      <v-btn class="ml-3 mt-5 hidden-sm-and-down" elevation="1" fab small @click="mini = !mini">
         <v-icon>
           {{ mini ? 'mdi-format-list-bulleted' : 'mdi-dots-vertical' }}
         </v-icon>
       </v-btn>
-      <img src="./assets/logo.png" class="logo">
     </v-app-bar>
 
     <v-navigation-drawer id="default-drawer" v-model="drawer" dark :right="$vuetify.rtl" :mini-variant.sync="mini"
@@ -42,19 +41,29 @@ export default {
           to: '/',
         },
         {
-          title: 'Manage Gallery',
+          title: 'Gallery',
           icon: 'mdi-image-multiple',
           to: '/manage-gallery',
         },
         {
-          title: 'Regular Tables',
-          icon: 'mdi-clipboard-outline',
-          to: '/tables/regular/',
+          title: 'Door Designs',
+          icon: 'mdi-door-sliding',
+          to: '/door-designs-gallery',
         },
         {
-          title: 'Typography',
-          icon: 'mdi-format-font',
-          to: '/components/typography/',
+          title: 'Door Kits',
+          icon: 'mdi-hanger',
+          to: '/door-kits-gallery',
+        },
+        {
+          title: 'Finish Paints',
+          icon: 'mdi-brush-variant',
+          to: '/finish-paints-gallery',
+        },
+        {
+          title: 'Handles',
+          icon: 'mdi-hand-extended',
+          to: '/handles-gallery',
         }
       ],
       mini: true,

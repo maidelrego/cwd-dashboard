@@ -1,9 +1,9 @@
 <template>
-  <v-container id="gallery" fluid tag="section">
-    <ManageGallery v-if="galleryImages.length" :imagesList="galleryImages" folderName="Gallery" @updateList="updateList" />
+  <v-container id="doorKits" fluid tag="section">
+    <ManageGallery v-if="doorKitsImages.length" :imagesList="doorKitsImages" folderName="DoorKits" @updateList="updateList" />
   </v-container>
 </template>
-
+  
 <script>
 import ManageGallery from '../components/ManageGallery/ManageGallery.vue'
 import { doAPIGet } from '../services/api'
@@ -15,20 +15,20 @@ export default {
   },
   data() {
     return {
-      galleryImages: [],
+      doorKitsImages: [],
     }
   },
   beforeMount() {
-    this.getGalleryImages();
+    this.getDoorKitsImages();
   },
   methods: {
     updateList() {
-      this.getGalleryImages();
+      this.getDoorKitsImages();
     },
-    async getGalleryImages() {
-      await doAPIGet('cloudinary/galleryImages').then((res) => {
+    async getDoorKitsImages() {
+      await doAPIGet('cloudinary/doorKits').then((res) => {
         console.log(res.data)
-        this.galleryImages = res.data
+        this.doorKitsImages = res.data
       })
     }
   }

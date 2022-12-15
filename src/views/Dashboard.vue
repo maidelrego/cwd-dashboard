@@ -13,7 +13,7 @@
       </v-col>
 
       <v-col cols="12">
-        <CardDesign color="primary" full-header>
+        <CardDesign color="primary" full-header :disableHover="true">
           <template #heading>
             <div class="pa-8 white--text">
               <div class="text-h4 font-weight-light">
@@ -48,7 +48,7 @@
       </v-col>
 
       <v-col cols="12">
-        <CardDesign color="primary" full-header>
+        <CardDesign color="primary" full-header :disableHover="true">
           <template #heading>
             <div class="pa-8 white--text">
               <div class="text-h4 font-weight-light">
