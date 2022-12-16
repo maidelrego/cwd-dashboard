@@ -28,6 +28,8 @@ function getDefaultState (metaFunc) {
 const objectTemplate = {
   state: {
   },
+  getters: {
+  },
   namespaced: true,
   mutations: {
     INIT_OBJECT (state, obj) {

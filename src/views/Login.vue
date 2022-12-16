@@ -7,15 +7,15 @@
       <v-form class="mt-3">
         <v-row>
           <v-col cols="12">
-            <v-text-field filled rounded dense label="Username" />
+            <v-text-field v-model="username" filled rounded dense label="Username" />
           </v-col>
           <v-col>
-            <v-text-field filled rounded dense label="Password" />
+            <v-text-field v-model="password" filled rounded dense label="Password" />
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" class="text-center">
-            <v-btn color="primary" rounded class="white--text">
+            <v-btn @click="login" color="primary" rounded class="white--text">
               Login
             </v-btn>
           </v-col>
@@ -28,6 +28,17 @@
 <script>
 export default {
   name: 'LoginPage',
+  data() {
+    return {
+      username: '',
+      password: '',
+    };
+  },
+  methods: {
+    login() {
+      this.$store.dispatch('Auth/login', { username: this.username, password: this.password });
+    },
+  },
 };
 </script>
  
@@ -35,7 +46,7 @@ export default {
 .login {
   max-width: 400px;
   margin: 0 auto;
-  top: 25%;
+  top: 15%;
 }
 </style>
  

@@ -68,7 +68,8 @@ export default {
   props: {
     imagesList: {
       type: Array,
-      required: true
+      required: true,
+      default: () => []
     },
     folderName: {
       type: String,
@@ -122,8 +123,10 @@ export default {
       await doAPIDelete('cloudinary/' + id).then((res) => {
         if (res.status === 200) {
           this.$emit('updateList')
+          this.$store.dispatch('alert', { show: true, color: 'info', msg: 'Image Deleted', icon: 'mdi-alert-circle' }, { root: true })
         } else {
           console.log('Error', res.data)
+          this.$store.dispatch('alert', { show: true, color: 'error', msg: 'Error Deleting Image', icon: 'mdi-alert-circle' }, { root: true })
         }
       })
 

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import $store from '@/store'
 const axiosInstance = axios.create()
 const apiServer = 'api/v1/'
 
@@ -11,6 +12,27 @@ function timeoutWatcher(promise, options = {}) {
     }, ms)
   })
   return Promise.race([promise, timeout])
+}
+
+function addAuthHeader (opts = {}) {
+  var token = ''
+
+  if ($store.state.Auth.obj.token) {
+    token = $store.state.Auth.obj.token
+  }
+
+  if (!opts.headers) {
+    opts.headers = {}
+  }
+
+  opts.headers['Access-Control-Allow-Origin'] = apiServer
+
+  if (token) {
+    opts.headers.Authorization = `Bearer ${token}`
+  } else {
+    opts.headers.Authorization = null
+  }
+  return opts
 }
 
 function doAPIGet(path, params, timeout = null) {
@@ -28,7 +50,7 @@ function doAPIGet(path, params, timeout = null) {
     }
     url += '?' + urlparams // + '?token=' + this.token
   }
-  const apicall = axiosInstance.get(url)
+  const apicall = axiosInstance.get(url, addAuthHeader({ clear: false }))
   const timeoutOpts = {}
 
   if (timeout) {
@@ -47,7 +69,7 @@ function doAPIGet(path, params, timeout = null) {
 }
 function doAPIPost(path, params) {
   var url = apiServer + path
-  const apicall = axiosInstance.post(url, params)
+  const apicall = axiosInstance.post(url, params, addAuthHeader({ clear: false }))
   return timeoutWatcher(apicall)
     .then((data) => {
       return data
@@ -59,7 +81,7 @@ function doAPIPost(path, params) {
 function doAPIPut(path, params) {
   // params.token = this.token
   var url = apiServer + path
-  const apicall = axiosInstance.put(url, params)
+  const apicall = axiosInstance.put(url, params, addAuthHeader({ clear: false }))
   return timeoutWatcher(apicall)
     .then((data) => {
       return data
@@ -70,7 +92,7 @@ function doAPIPut(path, params) {
 }
 function doAPIDelete(path) {
   var url = apiServer + path
-  const apicall = axiosInstance.delete(url)
+  const apicall = axiosInstance.delete(url, addAuthHeader({ clear: false }))
   return timeoutWatcher(apicall)
     .then((data) => {
       return data
