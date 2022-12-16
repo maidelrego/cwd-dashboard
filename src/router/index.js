@@ -34,6 +34,11 @@ const routes = [
     name: 'HandlesGallery',
     component: () => import('../views/HandlesGallery.vue')
   },
+  {
+    path: '/login',
+    name: 'LoginPage',
+    component: () => import('../views/Login.vue')
+  },
 ]
 
 const router = new VueRouter({

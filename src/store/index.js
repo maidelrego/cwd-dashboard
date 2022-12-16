@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Quotes from './modules/Quotes'
 import ContactUs from './modules/ContactUs'
+import CloudinaryImages from './modules/CloudinaryImages'
 
 Vue.use(Vuex)
 
@@ -16,6 +17,7 @@ export default new Vuex.Store({
   },
   modules: {
     Quotes,
-    ContactUs
+    ContactUs,
+    CloudinaryImages
   }
 })

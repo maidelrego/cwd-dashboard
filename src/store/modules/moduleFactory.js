@@ -80,6 +80,7 @@ const objectTemplate = {
           commit('CLEAR_ERROR')
           dispatch('setFromObject', res.data)
           console.debug(meta.objectName + ' initialzed from object')
+          return res.data
         }
       })
     },

@@ -1,5 +1,5 @@
 <template>
-  <CardDesign :eventIdString="eventId" class="v-card--material-stats" v-bind="$attrs" v-on="$listeners">
+  <CardDesign :eventIdSecondProp="eventId" class="v-card--material-stats" v-bind="$attrs" v-on="$listeners">
     <template #subtitle>
       <div class="text-right text-h3 v-card__subtitle--material-stats" v-text="value" />
     </template>
@@ -17,7 +17,7 @@ import CardDesign from './CardDesign.vue'
 
 export default {
   name: 'StatsCard',
-  props: { value: { type: Number }, eventId: { type: String } },
+  props: { value: { type: Number }, eventId: { type: Number } },
   components: { CardDesign },
 }
 </script>

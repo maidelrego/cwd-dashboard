@@ -63,7 +63,7 @@ export default {
     title: String,
     cardColor: String,
     disableHover: Boolean,
-    eventIdString: String,
+    eventIdSecondProp: Number,
   },
 
   data: () => ({
@@ -72,7 +72,7 @@ export default {
 
   methods: {
     checkboxEvent() {
-      this.$emit('checkboxEvent', this.checkbox, this.eventIdString)
+      this.$emit('checkboxEvent', this.checkbox, this.eventIdSecondProp)
     },
   },
 

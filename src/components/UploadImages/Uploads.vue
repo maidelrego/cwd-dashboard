@@ -40,7 +40,6 @@
               <span v-else>Upload<v-icon class="mr-5">mdi-cloud-upload</v-icon></span>
             </v-btn>
           </v-col>
-
         </v-form>
       </v-card-text>
     </v-card>
