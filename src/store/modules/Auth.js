@@ -37,7 +37,6 @@ Auth.actions.setCredentials = function ({ commit }, data) {
 Auth.actions.login = async function ({ dispatch }, userData) {
   doAPIPost('auth/login', userData).then((res) => {
     if (res.status !== 201) {
-      console.log(res)
       dispatch('alert', { show: true, color: 'error', msg: res.message, icon: 'mdi-alert-circle' }, { root: true })
       throw new Error('There was an error during the API Post operation')
     } else {

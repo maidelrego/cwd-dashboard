@@ -37,7 +37,6 @@ export default {
   methods: {
     checkForUserToken() {
       const token = loadLocalUserAuthToken()
-      console.log('token', token);
       const credentials = {
         token: token,
         isLoggedIn: true,
