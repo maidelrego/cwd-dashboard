@@ -7,7 +7,7 @@
       <v-form class="mt-3">
         <v-row>
           <v-col cols="12">
-            <v-text-field filled rounded dense label="Name" />
+            <v-text-field filled rounded dense label="Username" />
           </v-col>
           <v-col>
             <v-text-field filled rounded dense label="Password" />

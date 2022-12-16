@@ -75,6 +75,7 @@ const objectTemplate = {
       return doAPIGet(`${meta.apiStub}/${id}`).then((res) => {
         if (res.status !== 200) {
           commit('SET_ERROR', res.data)
+          dispatch('alert', { show: true, color: 'error', msg: res.message, icon: 'mdi-alert-circle' }, { root: true })
           throw new Error('There was an error during the API Get operation')
         } else {
           commit('CLEAR_ERROR')
@@ -84,11 +85,12 @@ const objectTemplate = {
         }
       })
     },
-    pullData: ({ commit, state }) => {
+    pullData: ({ commit, state, dispatch }) => {
       const meta = state.metaFunc()
       return doAPIGet(`${meta.apiStub}`).then((res) => {
         if (res.status !== 200) {
           commit('SET_ERROR', res.data)
+          dispatch('alert', { show: true, color: 'error', msg: res.message, icon: 'mdi-alert-circle' }, { root: true })
           throw new Error('There was an error during the API Get operation')
         } else {
           return res.data

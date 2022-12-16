@@ -22,7 +22,7 @@
       </v-toolbar>
       <v-card-text>
         <v-form class="mt-5">
-          <v-file-input v-model="files" dense filled rounded color="primary" counter label="File input" multiple
+          <v-file-input v-model="files" accept="image/png, image/jpeg, image/bmp" dense filled rounded color="primary" counter label="File input" multiple
             placeholder="Select your files" prepend-icon="mdi-paperclip">
             <template v-slot:selection="{ index, text }">
               <v-chip v-if="index < 2" color="primary" dark label small>

@@ -41,7 +41,7 @@ function doAPIGet(path, params, timeout = null) {
       return res
     })
     .catch((err) => {
-      return err
+      return err.response.data
     })
   return req
 }
@@ -65,7 +65,7 @@ function doAPIPut(path, params) {
       return data
     })
     .catch((err) => {
-      return err
+      return err.response.data
     })
 }
 function doAPIDelete(path) {
@@ -76,7 +76,7 @@ function doAPIDelete(path) {
       return data
     })
     .catch((err) => {
-      return err
+      return err.response.data
     })
 }
 
