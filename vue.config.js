@@ -10,10 +10,6 @@ module.exports = defineConfig({
 module.exports = {
   outputDir: path.resolve(__dirname,'../public'),
   devServer:{
-    allowedHosts: 'auto' ,
-    bonjour: {
-      type: 'https'
-    },
     proxy:{
       '/api':{
         target: 'http://localhost:3000'
