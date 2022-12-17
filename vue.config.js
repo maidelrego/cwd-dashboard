@@ -5,17 +5,18 @@ module.exports = defineConfig({
   transpileDependencies: [
     'vuetify'
   ],
-  output: {
-    path: path.resolve(__dirname, '../dist'),
-    filename: 'build.js',
-    publicPath: './static'
-},
+  // output: {
+  //   path: path.resolve(__dirname, '../dist'),
+  //   filename: 'build.js',
+  //   publicPath: './static'
+  // },
 })
 
 module.exports = {
-  devServer:{
-    proxy:{
-      '/api':{
+  outputDir: path.resolve(__dirname, '../public'),
+  devServer: {
+    proxy: {
+      '/api': {
         target: 'http://localhost:3000'
       }
     }
