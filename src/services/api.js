@@ -1,7 +1,7 @@
 import axios from 'axios'
 import $store from '@/store'
 const axiosInstance = axios.create()
-const apiServer = 'api/v1/'
+const apiServer = 'https://cwd-server.up.railway.app/api/v1/'
 
 function timeoutWatcher(promise, options = {}) {
   const ms = options.ms || 90000
