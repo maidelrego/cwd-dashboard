@@ -17,7 +17,7 @@ module.exports = {
   devServer:{
     proxy:{
       '/api':{
-        target: 'http://localhost:3000'
+        target: 'cwd-server.up.railway.app'
       }
     }
   }
