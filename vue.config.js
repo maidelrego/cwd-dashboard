@@ -13,20 +13,10 @@ module.exports = defineConfig({
 })
 
 module.exports = {
-  // outputDir: path.resolve(__dirname,'../public'),
-  proxyTable: {
-    '/api': {
-      target: 'https://cwd-server.up.railway.app',
-      changeOrigin: true,
-      pathRewrite: {
-        '^/api': ''
-      }
-    },
-  },
   devServer:{
     proxy:{
       '/api':{
-        target: 'cwd-server.up.railway.app'
+        target: 'http://localhost:3000'
       }
     }
   }
